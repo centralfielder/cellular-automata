@@ -6,7 +6,7 @@
  */
 
 package world;
-public final class EdgeWorld extends AbstractWorld{
+public final class EdgeWorld extends World{
 	
 	/**
 	 * Constructor

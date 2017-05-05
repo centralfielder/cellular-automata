@@ -4,7 +4,7 @@ package world;
  * This models a concrete world for the "wrap" case.
  * @author Luca Bisin
  */
-public final class WrapWorld extends AbstractWorld{
+public final class WrapWorld extends World{
 	
 	/**
 	 * Constructor

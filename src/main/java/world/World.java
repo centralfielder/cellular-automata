@@ -11,7 +11,7 @@ package world;
 import java.util.ArrayList;
 import cell.*;
 
-public abstract class AbstractWorld implements Runnable{
+public abstract class World implements Runnable{
 	/* Number of rows */
 	private int rows;
 	/* Number of columns */
@@ -19,12 +19,13 @@ public abstract class AbstractWorld implements Runnable{
 	/* 2D array containing the squares */
 	private Square [][] squares;
 	
+	private String a = "Hey";
 	/**
 	 * Constructor
 	 * @param rows Number of rows
 	 * @param cols	Number of columns
 	 */
-	public AbstractWorld(int rows, int cols){
+	public World(int rows, int cols){
 		this.rows = rows;
 		this.cols = cols;
 		

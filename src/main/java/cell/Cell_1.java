@@ -18,7 +18,7 @@ public class Cell_1 extends AbstractCell{
 	 * @param y Coordinate Y of the square where the cell must be placed
 	 * @param world The world object
 	 */
-	public Cell_1(int x, int y, AbstractWorld world){
+	public Cell_1(int x, int y, World world){
 		super(x, y, world);
 		this.lifespan = new Random().nextInt(this.MAX_LIFESPAN + 1);
 		this.fitness = this.FITNESS;

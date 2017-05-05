@@ -6,23 +6,19 @@
  * @author Luca Bisin
  */
 
+import java.lang.reflect.Field;
+
 import world.*;
 
 public class Main {
 
-	public static void main(String [] args) {
-		int rows = 20;
-		int cols = 20;
+	public static void main(String [] args) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+		World w = WorldBuilder.INSTANCE.makeWorld(4, 4, WorldType.EDGE);
+		Class<?> c = w.getClass();
+		Class<?> sc = c.getSuperclass();
+		Field f = sc.getDeclaredField("squares");
+		f.setAccessible(true);
+		System.out.println(f.get(w));
 		
-		// Initialize WrapWorld
-		AbstractWorld w = new WrapWorld(rows, cols);
-		
-		// Initialize EdgeWorld
-//		AbstractWorld w = new EdgeWorld(rows, cols);
-		
-		w.init();
-		w.startLife();
-		Thread t = new Thread(w);
-		t.start();
 	}	
 }

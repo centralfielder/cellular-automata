@@ -12,7 +12,7 @@ public abstract class AbstractCell implements Runnable{
 	/* Value for fitness */
 	protected double fitness;
 	/* The world where the cell is placed */
-	private AbstractWorld world;
+	private World world;
 	/* The square where the cell is placed*/
 	private Square placedAt;
 	/* The thread of the cell */
@@ -24,9 +24,9 @@ public abstract class AbstractCell implements Runnable{
 	 * Constructor
 	 * @param x			Coordinate x
 	 * @param y			Coordinate y
-	 * @param world	AbstractWorld object
+	 * @param world	World object
 	 */
-	public AbstractCell(int x, int y, AbstractWorld world){
+	public AbstractCell(int x, int y, World world){
 		this.world = world;
 		this.placedAt = this.world.getSquare(x, y);
 		
@@ -78,9 +78,9 @@ public abstract class AbstractCell implements Runnable{
 	
 	/**
 	 * Get reference to the world object
-	 * @return AbstractWorld
+	 * @return World
 	 */
-	public AbstractWorld getWorld(){
+	public World getWorld(){
 		return this.world;
 	}
 	
