@@ -7,7 +7,6 @@
  */
 
 import java.lang.reflect.Field;
-
 import world.*;
 
 public class Main {
@@ -18,7 +17,8 @@ public class Main {
 		Class<?> sc = c.getSuperclass();
 		Field f = sc.getDeclaredField("squares");
 		f.setAccessible(true);
-		System.out.println(f.get(w));
+		Square [][] squares = (Square[][]) f.get(w);
+		System.out.println(squares.length);
 		
 	}	
 }

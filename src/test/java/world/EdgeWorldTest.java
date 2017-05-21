@@ -1,0 +1,14 @@
+package world;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class EdgeWorldTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

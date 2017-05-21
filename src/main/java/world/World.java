@@ -19,7 +19,6 @@ public abstract class World implements Runnable{
 	/* 2D array containing the squares */
 	private Square [][] squares;
 	
-	private String a = "Hey";
 	/**
 	 * Constructor
 	 * @param rows Number of rows
@@ -171,4 +170,5 @@ public abstract class World implements Runnable{
 			e.printStackTrace();	
 		}
 	}
+	
 }
