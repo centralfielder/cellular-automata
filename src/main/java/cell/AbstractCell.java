@@ -145,7 +145,7 @@ public abstract class AbstractCell implements Runnable{
 					this.checkSquare(s);
 				} 
 				catch (InterruptedException e) {
-//					e.printStackTrace();
+					e.printStackTrace();
 				}
 			}
 		}
@@ -153,11 +153,11 @@ public abstract class AbstractCell implements Runnable{
 		// Own square is checked as last to avoid that a cell
 		// can put a child in its own square before having finished
 		// with other cells
-		// TODO This should check for interrupted too
+		// TODO This should check for interrupted too(?)
 		try {
 			this.checkSquare(this.placedAt);
 		} catch (InterruptedException e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 		}
 
 	}
@@ -168,7 +168,7 @@ public abstract class AbstractCell implements Runnable{
 			this.checkVitalSpace();
 			this.die();
 		} catch (InterruptedException e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 	

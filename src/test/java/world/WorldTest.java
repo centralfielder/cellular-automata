@@ -58,13 +58,4 @@ public class WorldTest {
 		assertTrue(this.w.getCols() == this.cols);
 	}
 	
-	@Test
-	public void testGetSquareIfExistingInTheWorld(){
-		Square testSquare = this.w.getSquare(5, 5);
-		assertTrue(testSquare != null);
-		assertTrue(testSquare.getX() == 2);
-		assertTrue(testSquare.getY() == 2);
-	}
-	
-	
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Build file for Cellular project -->
+
+<project name="cellular" default="" basedir=".">
+	
+	<!-- Project directories -->
+	<property name="src.dir" value="src"/>
+	<property name="bin.dir" value="bin"/>
+	
+	<!-- Classpath -->
+	<path id="classpath">
+		
+	</path>
+
+	<!-- Clean -->
+	<target name="clean">
+		<delete dir="${bin.dir}"/>
+	</target>
+
+	<!-- Prepare -->
+	<target name="prepare">
+		<mkdir dir="${bin.dir}"/>
+	</target>
+
+	<!-- Compile -->
+	<target name="compile" depends="prepare">
+		<javac destdir="${bin.dir}" srcdir="${src.dir}">
+			
+		</javac>
+		
+	</target>
+
+
+</project>

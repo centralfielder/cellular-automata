@@ -12,13 +12,10 @@ import world.*;
 public class Main {
 
 	public static void main(String [] args) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-		World w = WorldBuilder.INSTANCE.makeWorld(4, 4, WorldType.EDGE);
-		Class<?> c = w.getClass();
-		Class<?> sc = c.getSuperclass();
-		Field f = sc.getDeclaredField("squares");
-		f.setAccessible(true);
-		Square [][] squares = (Square[][]) f.get(w);
-		System.out.println(squares.length);
-		
+		World w = WorldBuilder.INSTANCE.makeWorld(10, 10, WorldType.WRAP);
+		w.init();
+		w.startLife();
+		Thread t = new Thread(w);
+		t.start();
 	}	
 }

@@ -1,5 +1,7 @@
 package world;
 
+import java.util.AbstractMap;
+
 /**
  * This models a concrete world for the "wrap" case.
  * @author Luca Bisin
@@ -15,8 +17,16 @@ public final class WrapWorld extends World{
 		super(rows, cols);
 	}
 	
+	/**
+	 * Returns a pair of coordinates for a square, validated according to
+	 * the world type, or null if the coordinates are not valid in the world.
+	 * @param x
+	 * @param y
+	 * @return A SimpleImmutableEntry storing coordinates or null
+	 */
 	@Override
-	protected Square getSquareInWorld(int x, int y){
+	protected AbstractMap.SimpleImmutableEntry<Integer, Integer> 
+	checkCoordinates(int x, int y){
 		int rows = this.getRows();
 		int cols = this.getCols();
 		
@@ -43,6 +53,6 @@ public final class WrapWorld extends World{
 			yRef = cols + y;
 		}
 		
-		return this.getSquare(xRef, yRef);
+		return new AbstractMap.SimpleImmutableEntry<Integer, Integer>(xRef, yRef);
 	}
 }

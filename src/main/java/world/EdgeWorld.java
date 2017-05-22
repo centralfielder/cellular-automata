@@ -6,6 +6,9 @@
  */
 
 package world;
+
+import java.util.AbstractMap;
+
 public final class EdgeWorld extends World{
 	
 	/**
@@ -17,19 +20,27 @@ public final class EdgeWorld extends World{
 		super(rows, cols);
 	}
 	
+	/**
+	 * Returns a pair of coordinates for a square, validated according to
+	 * the world type, or null if the coordinates are not valid in the world.
+	 * @param x
+	 * @param y
+	 * @return A SimpleImmutableEntry storing coordinates or null
+	 */
 	@Override
-	protected Square getSquareInWorld(int x, int y){
+	protected AbstractMap.SimpleImmutableEntry<Integer, Integer> 
+	checkCoordinates(int x, int y){
 		int rows = this.getRows();
 		int cols = this.getCols();
 		
-		// If the coordinates are within the limits of the world,
-		// return the corresponding square
+		// Returns true if the coordinates are within the limits of the world
 		if(x >= 0 && x < rows){
 			if(y >= 0 && y < cols){
-				return this.getSquare(x, y);
+				return new AbstractMap.SimpleImmutableEntry<Integer, Integer>(
+						x,y
+						);
 			}
 		}
-		// Else return null
 		return null;
 	}
 }

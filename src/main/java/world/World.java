@@ -8,6 +8,7 @@
 
 package world;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import cell.*;
 
@@ -39,10 +40,11 @@ public abstract class World implements Runnable{
 	
 	/**
 	 * Place some starting cells
+	 * TODO: Consider exceptions!
 	 */
 	public void init(){
 		new Cell_1(0, 0, this);
-		new Cell_1(4, 4, this);
+		new Cell_2(4, 4, this);
 		new Cell_2(0, 1, this);
 		new Cell_2(1, 1, this);
 	}
@@ -61,14 +63,34 @@ public abstract class World implements Runnable{
 	}
 	
 	/**
-	 * Return a single square given its coordinates
-	 * @param x	Coordinate x
-	 * @param y Coordinate y
-	 * @return Square
+	 * Returns a single square given its coordinates 
+	 * or null if coordinates are outside the world.
+	 * @param x Coordinate X
+	 * @param y Coordinate Y
+	 * @return Square object or null (if the coordinates are outside the world)
 	 */
 	public Square getSquare(int x, int y){
-		return this.squares [x][y];
-	}
+		AbstractMap.SimpleImmutableEntry<Integer, Integer> coordinates = 
+				this.checkCoordinates(x, y);
+		if(coordinates != null){
+			x = coordinates.getKey();
+			y = coordinates.getValue();
+			return this.squares [x][y];
+		}
+		return null;
+	};
+	
+	/**
+	 * Checks if the given coordinates are within the world. 
+	 * Must be overriden by the subclass to implement the logics specific to 
+	 * the world type. E.g., the coordinates -1,-1 could return null ("edge"
+	 * case) or the square at the opposite edge ("wrap" case).
+	 * @param x
+	 * @param y
+	 * @return boolean
+	 */
+	protected abstract AbstractMap.SimpleImmutableEntry<Integer, Integer> 
+	checkCoordinates(int x, int y);
 	
 	/**
 	 * Get the area around a given square.
@@ -92,7 +114,7 @@ public abstract class World implements Runnable{
 		int side = (scope * 2) + 1;
 		for(int x = xUpperLeft; x < xUpperLeft + side; x++){
 			for(int y = yUpperLeft; y < yUpperLeft + side; y++){
-				Square squareInWorld = this.getSquareInWorld(x, y);
+				Square squareInWorld = this.getSquare(x, y);
 				
 				// This condition checks if the square at the given coordinates
 				// is within the world, according to the world type
@@ -106,17 +128,6 @@ public abstract class World implements Runnable{
 		Square [] result = new Square [squares.size()];
 		return squares.toArray(result);
 	}
-	
-	/**
-	 * A method to check if some coordinates return a square within the world.
-	 * Must be overriden by the subclass to implement the logics specific to 
-	 * the world type. E.g., the coordinates -1,-1 could return null ("edge"
-	 * case) or the square at the opposite edge ("wrap" case). 
-	 * @param x Coordinate X
-	 * @param y Coordinate Y
-	 * @return Square object or null (if the coordinates are outside the world)
-	 */
-	protected abstract Square getSquareInWorld(int x, int y);
 	
 	/**
 	 * Get the value of the rows instance variable
@@ -170,5 +181,6 @@ public abstract class World implements Runnable{
 			e.printStackTrace();	
 		}
 	}
+	
 	
 }
